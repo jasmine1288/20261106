@@ -16,6 +16,7 @@
     @media(max-width:980px){.app{grid-template-columns:190px 1fr}aside{padding-left:17px;padding-right:12px}main{padding:26px 24px}.content-grid{grid-template-columns:minmax(0,1fr) 245px;gap:12px}}
     @media(max-width:760px){.app{display:block}aside{display:none}main{padding:18px 15px 35px}.topbar{margin-bottom:27px}.heading-row h1{font-size:27px}.content-grid{grid-template-columns:1fr}.right-col{display:grid;grid-template-columns:1fr 1fr}.summary{gap:7px}.summary-card{padding:11px 9px;gap:8px}.summary-icon{width:30px;height:30px}.summary-number{font-size:16px}.summary-label{font-size:9px}.schedule{padding:16px 12px}.slot{grid-template-columns:43px 1fr}.event-time{display:none}}
     @media(max-width:460px){.right-col{grid-template-columns:1fr}.view-switch button{padding:6px 8px}.summary-card{display:block}.summary-icon{margin-bottom:8px}.heading-row .primary{padding:10px 11px;font-size:11px}.date-full{font-size:12px}}
+    .account-area{display:flex;align-items:center;gap:9px}.avatar{border:0;flex:0 0 35px;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.google-signin{display:inline-flex;align-items:center;gap:8px;border:1px solid #e6e9ef;border-radius:9px;background:white;padding:8px 11px;color:#3b4050;font-size:11px;font-weight:600;white-space:nowrap}.google-signin:disabled{opacity:.65;cursor:wait}.account-email{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#635c70;font-size:11px}.signout-btn{border:0;background:#fff0f2;color:#c3425b;border-radius:8px;padding:7px 9px;font-size:10px}.auth-status{color:#bf3453;font-size:10px;max-width:210px}.auth-status:empty{display:none}@media(max-width:560px){.top-right{gap:7px}.account-area{flex-wrap:wrap;justify-content:flex-end;max-width:65vw}.account-email{max-width:120px}.auth-status{max-width:180px}.google-signin{padding:7px 9px;font-size:10px}}
     .weather-card{display:flex;align-items:center;gap:13px;background:#d8f8fb;border:1px solid #a7eaf0;border-radius:13px;padding:12px 15px;margin:-8px 0 20px;color:#194b58}.weather-symbol{font-size:27px;line-height:1;width:38px;text-align:center}.weather-info{min-width:0;flex:1}.weather-title{font-size:11px;font-weight:700}.weather-description{font-size:10px;color:#39717c;margin-top:3px}.weather-temp{font-size:19px;font-weight:700;color:#087e99;white-space:nowrap}.weather-temp small{font-size:10px;font-weight:500;color:#39717c}.weather-button{border:0;background:#00a9c7;color:white;border-radius:8px;padding:8px 11px;font-size:10px;font-weight:700;white-space:nowrap}.weather-button:hover{background:#008da8}
     @media(max-width:460px){.weather-card{gap:8px;padding:10px}.weather-symbol{width:30px;font-size:23px}.weather-temp{font-size:16px}.weather-button{padding:7px 8px}}
     /* High-energy solid-color theme: intentionally no gradients. */
@@ -45,7 +46,7 @@
     <div class="sidebar-bottom">把每一天，安排得剛剛好。<br>你的時間，由你決定。</div>
   </aside>
   <main>
-    <div class="topbar"><div class="crumb">個人工作空間　/　今天</div><div class="top-right"><button class="icon-btn" title="提醒">♧<i class="bell-dot"></i></button><div class="avatar">林</div></div></div>
+    <div class="topbar"><div class="crumb">個人工作空間　/　今天</div><div class="top-right"><button class="icon-btn" title="提醒">♧<i class="bell-dot"></i></button><div class="account-area"><div class="avatar" id="userAvatar" aria-label="訪客">訪</div><button type="button" class="google-signin" id="googleSignInBtn" aria-label="使用 Google 帳戶登入" disabled>🌐 使用 Google 登入</button><span class="auth-status" id="authStatus" role="status" aria-live="polite"></span><span class="account-email" id="accountEmail" hidden></span><button type="button" class="signout-btn" id="signOutBtn" hidden>登出</button></div></div></div>
     <div class="greeting" id="greeting">MONDAY, OCTOBER 30</div>
     <div class="heading-row"><div><h1>今天，慢慢來。</h1><div class="sub" id="dailyJoke"></div></div><div class="hero-doodle" aria-hidden="true"><svg class="doodle-sun" width="76" height="76" viewBox="0 0 76 76" fill="none"><path d="M38 4v8m0 52v8M4 38h8m52 0h8M14 14l6 6m36 36 6 6m0-48-6 6M20 56l-6 6" stroke="#FF7A24" stroke-width="4" stroke-linecap="round"/><circle cx="38" cy="38" r="23" fill="#FFD21F" stroke="#EF6A32" stroke-width="3"/><circle cx="30" cy="35" r="2.5" fill="#34244C"/><circle cx="46" cy="35" r="2.5" fill="#34244C"/><path d="M31 44c4 5 10 5 14 0" stroke="#34244C" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="42" r="3" fill="#FF739A"/><circle cx="52" cy="42" r="3" fill="#FF739A"/><path class="doodle-spark" d="m62 13 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" fill="#6738E8"/></svg></div><button class="primary" id="addBtn"><span class="plus">＋</span>新增項目</button></div>
     <div class="weather-card"><div class="weather-symbol" id="weatherIcon">🌤️</div><div class="weather-info"><div class="weather-title" id="weatherTitle">今日天氣</div><div class="weather-description" id="weatherDescription">點一下，看看你所在地的天氣</div></div><div class="weather-temp" id="weatherTemp"></div><button class="weather-button" id="weatherButton">取得天氣</button></div>
@@ -55,6 +56,66 @@
   </main>
 </div>
 <div class="overlay" id="overlay"><form class="modal" id="itemForm"><div class="modal-head"><h2>新增安排</h2><button type="button" class="close" id="closeModal">×</button></div><div class="type-tabs"><button type="button" class="active" data-type="event">行程</button><button type="button" data-type="task">任務</button></div><input type="hidden" id="type" value="event"><div class="field"><label for="title">名稱</label><input id="title" required maxlength="70" placeholder="例如：專案週會"></div><div class="field-grid"><div class="field"><label for="date">日期</label><input type="date" id="date" required></div><div class="field" id="colorWrap"><label for="color">標籤顏色</label><select id="color"><option value="green">亮紫</option><option value="orange">珊瑚橘</option><option value="blue">青藍</option><option value="purple">桃紅</option></select></div></div><div class="field-grid" id="timeFields"><div class="field"><label for="start">開始時間</label><input type="time" id="start" value="09:00"></div><div class="field"><label for="end">結束時間</label><input type="time" id="end" value="10:00"></div></div><div class="field"><label for="repeat">重複</label><select id="repeat"><option value="none">不重複</option><option value="daily">每天</option><option value="weekdays">每個平日</option><option value="weekly">每週</option></select></div><div class="form-options"><label class="check-option"><input type="checkbox" id="remind" checked> 開始時提醒</label><label class="check-option"><input type="checkbox" id="allDay"> 全天</label><label class="check-option important-option"><input type="checkbox" id="important"> <span class="star-mark">★</span> 重要事項</label></div><div class="modal-actions"><button type="button" class="secondary" id="cancelBtn">取消</button><button class="primary" type="submit">儲存安排</button></div></form></div><div class="toast" id="toast"></div>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+// Firebase Console > Project settings > Your apps：請替換成 Web app 設定值。
+const firebaseConfig = {
+  apiKey: 'AIzaSyB-Zn5ksqkE0u9ofwDzzgy8TmcUHWQduK8',
+  authDomain: 'collection-353f1.firebaseapp.com',
+  projectId: 'collection-353f1',
+  appId: '1:968528576936:web:b89e9a89e8ea2d84fddd9d'
+};
+const auth = getAuth(initializeApp(firebaseConfig));
+const provider = new GoogleAuthProvider();
+const signInButton = document.querySelector('#googleSignInBtn');
+const signOutButton = document.querySelector('#signOutBtn');
+const accountEmail = document.querySelector('#accountEmail');
+const userAvatar = document.querySelector('#userAvatar');
+const authStatus = document.querySelector('#authStatus');
+function showAuthError(error) {
+  const messages = {
+    'auth/operation-not-allowed': 'Firebase 尚未啟用 Google 登入，請至 Authentication > Sign-in method 開啟。',
+    'auth/unauthorized-domain': '此網站網域尚未加入 Firebase 授權網域。',
+    'auth/popup-closed-by-user': '登入視窗已關閉，尚未完成登入。',
+    'auth/network-request-failed': '網路連線失敗，請檢查網路後重試。'
+  };
+  authStatus.textContent = messages[error.code] || 'Google 登入失敗，請稍後重試。';
+}
+function renderAccount(user) {
+  signInButton.hidden = !!user;
+  signOutButton.hidden = !user;
+  accountEmail.hidden = !user;
+  if (user) {
+    accountEmail.textContent = user.displayName || user.email || '已登入';
+    userAvatar.replaceChildren();
+    if (user.photoURL) {
+      const image = document.createElement('img'); image.src = user.photoURL; image.alt = ''; userAvatar.append(image);
+    } else {
+      userAvatar.textContent = (user.displayName || user.email || '我').trim().slice(0, 1).toUpperCase();
+    }
+    userAvatar.setAttribute('aria-label', user.displayName || user.email || '已登入');
+  } else {
+    userAvatar.textContent = '訪'; userAvatar.setAttribute('aria-label', '訪客');
+  }
+}
+signInButton.addEventListener('click', async () => {
+  authStatus.textContent = ''; signInButton.disabled = true;
+  try { await signInWithPopup(auth, provider); }
+  catch (error) {
+    if (error.code === 'auth/popup-blocked') {
+      try { await signInWithRedirect(auth, provider); return; }
+      catch (redirectError) { showAuthError(redirectError); }
+    } else { showAuthError(error); }
+  } finally { signInButton.disabled = false; }
+});
+signOutButton.addEventListener('click', async () => {
+  authStatus.textContent = '';
+  try { await signOut(auth); } catch (error) { showAuthError(error); }
+});
+getRedirectResult(auth).catch(showAuthError);
+onAuthStateChanged(auth, (user) => { renderAccount(user); signInButton.disabled = false; });
+</script>
 <script>
 (()=>{
   const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
